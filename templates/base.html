@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/png" href="{% static "pics/favicon.ico" %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static "materialize/css/materialize.min.css" %}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{% static "materialize/css/mystyle.css" %}"  media="screen,projection"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
+        <script type="text/javascript" src="{% static "materialize/js/materialize.min.js" %}"></script>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+<body>
+<main>
+    <div class="container  center-align">
+        <a href="/"><img class="responsive-img logo" src="{% static "pics/logostore.png" %}"></a>
+        <!-- <span class="vip">Клуб VIP покупателей <i class="small material-icons">shopping_cart</i></span> -->
+    </div>
+
+    <div class="container">
+
+        <nav class="z-depth-1">
+            <div class="nav-wrapper">
+                <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="center hide-on-med-and-down">
+                    <li><a href="/category/53557/1">Сапоги</a></li>
+                    <li><a href="/category/45333/1">Оксфорды</a></li>
+                    <li><a href="/category/55793/1">На каблуке</a></li>
+                    <li><a href="/category/62107/1">Босоножки</a></li>
+                    <li><a href="/category/95672/1">Спорт</a></li>
+                    <li><a href="/category/11632/1">Тапочки</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-menu">
+                    <li><a href="/category/53557/1">Сапоги</a></li>
+                    <li><a href="/category/45333/1">Оксфорды</a></li>
+                    <li><a href="/category/55793/1">На каблуке</a></li>
+                    <li><a href="/category/62107/1">Босоножки</a></li>
+                    <li><a href="/category/95672/1">Спорт</a></li>
+                    <li><a href="/category/11632/1">Тапочки</a></li>
+                    
+                </ul>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+</main>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+
+            <p class="grey-text text-lighten-4">Счастье рядом. Не ограничивай себя.</p>
+          </div>
+          <div class="col l6 s12">
+
+            <p class="right-align grey-text text-lighten-4"><i class="material-icons tiny">phone</i> +38(095)579-19-59</p>
+             <p class="right-align grey-text text-lighten-4"><i class="material-icons tiny">email</i> hello@nebraska.com.ua</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2015 Nebraska&trade;
+        <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+        </div>
+      </div>
+    </footer>
+<script>
+    $(".button-collapse").sideNav();
+</script>
+</body>
+</html>

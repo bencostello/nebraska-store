@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<script type="text/javascript" src="{% static "js/responsiveslides.min.js" %}"></script>
+<div class="row">
+	<div class="col s12 offset-m2 m8">
+		<h5 class="product-title">{{title}}</h5>
+
+		<ul class="rslides">
+		{% for pic in pics %}
+            
+			<li>
+                <!-- <a href="{{pic}}" target="_blank"><i class="material-icons medium">zoom_in</i></a> -->
+                <img class="responsive-img" src="{{pic}}" alt="{{title}">
+            </li>
+		{% endfor %}
+		</ul>
+
+        <table class="striped">
+            <tbody>
+                <tr>
+                    <td>Цена:</td>
+                    <td class="td-price">${{price}}</td>
+                </tr>
+                <tr>
+                    <td>Состояние:</td>
+                    <td>{{condition}}</td>
+                </tr>
+                <tr>
+                    <td>Описание:</td>
+                    <td>{{condition_desc}}</td>
+                </tr>
+                <tr>
+                    <td>Доставка по США:</td>
+                    <td class="td-ship">$ {{shipping}}</td>
+                </tr>
+                <tr>
+                    <td>Размер:</td>
+                    <td class="td-size">{{size}}</td>
+                </tr>
+                <tr>
+                    <td>Ширина:</td>
+                    <td>{{width}}</td>
+                </tr>
+                <tr>
+                    <td>Материал:</td>
+                    <td>{{material}}</td>
+                </tr>
+                <tr>
+                    <td>Цвет:</td>
+                    <td>{{color}}</td>
+                </tr>
+                <tr>
+                    <td>Каблук:</td>
+                    <td>{{kabluk}}</td>
+                </tr>
+            </tbody>
+        </table>
+	</div>
+</div>
+
+<script>
+  $(function() {
+    $(".rslides").responsiveSlides({
+    	pager: true,
+    	auto: false
+    });
+  });
+</script>
+
+{% endblock %}  

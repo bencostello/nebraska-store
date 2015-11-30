@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<!-- <nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="#!" class="breadcrumb">Категории</a>
+        <a href="#!" class="breadcrumb">{{category}}</a>
+      </div>
+    </div>
+  </nav> -->
+
+	<div class="row filter">
+		<form class="col s12 m12" action="." method="get" name="filter">
+			<div class="row">
+				<div class="input-field col s12 m4 l2">
+					<p>
+						Состояние:	
+					</p>
+					<p>
+						<input name="cond_new" type="checkbox" id="cond_new" />
+						<label for="cond_new">Новое с коробкой</label>
+      				</p>
+					<p>
+						<input name="cond_nwb" type="checkbox" id="cond_nwb" />
+						<label for="cond_nwb">Новое без коробки</label>
+      				</p>
+					<p>
+						<input name="cond_def" type="checkbox" id="cond_def" />
+						<label for="cond_def">Новое с дефектами</label>
+      				</p>
+				</div>
+
+				<div class="input-field col s12 m4 l2">
+					<p>
+						Материал:
+					</p>
+					<p>
+						<input name="leather" type="checkbox" id="leather"/>
+						<label for="leather">Кожа</label>
+      				</p>
+					<p>
+						<input name="suede" type="checkbox" id="suede" />
+						<label for="suede">Замша</label>
+      				</p>
+					<p>
+						<input name="patent_leather" type="checkbox" id="patent_leather" />
+						<label for="patent_leather">Лакированная кожа</label>
+      				</p>
+					<p>
+						<input name="canvas" type="checkbox" id="canvas" />
+						<label for="canvas">Ткань</label>
+      				</p>
+					<p>
+						<input name="rubber" type="checkbox" id="rubber" />
+						<label for="rubber">Резина</label>
+      				</p>
+					<p>
+						<input name="Snakeskin" type="checkbox" id="Snakeskin" />
+						<label for="Snakeskin">Питон</label>
+      				</p>
+					<p>
+						<input name="synthetic" type="checkbox" id="synthetic" />
+						<label for="synthetic">Синтетика</label>
+      				</p>
+					<p>
+						<input name="vegan" type="checkbox" id="vegan" />
+						<label for="vegan">Веган</label>
+      				</p>
+
+				</div>
+
+				<div class="input-field col s12 m4 l2">
+					<p>
+						Размер (US):	
+					</p>
+					<p>   
+						<input name="size6" type="checkbox" id="size6" />
+						<label for="size6">6</label>
+      				</p>
+					<p>
+						<input name="size6.5" type="checkbox" id="size6.5" />
+						<label for="size6.5">6.5</label>
+      				</p>
+					<p>
+						<input name="size7" type="checkbox" id="size7" />
+						<label for="size7">7</label>
+      				</p>
+					<p>
+						<input name="size7.5" type="checkbox" id="size7.5" />
+						<label for="size7.5">7.5</label>
+      				</p>
+					<p>
+						<input name="size8" type="checkbox" id="size8" />
+						<label for="size8">8</label>
+      				</p>
+					<p>
+						<input name="size8.5" type="checkbox" id="size8.5" />
+						<label for="size8.5">8.5</label>
+      				</p>
+					<p>
+						<input name="size9" type="checkbox" id="size9" />
+						<label for="size9">9</label>
+      				</p>
+					<p>
+						<input name="size9.5" type="checkbox" id="size9.5" />
+						<label for="size9.5">9.5</label>
+      				</p>
+					<p>
+						<input name="size10" type="checkbox" id="size10" />
+						<label for="size10">10</label>
+      				</p>
+				</div>
+
+				<div class="input-field col s12 m4 l2">
+					<i class="material-icons prefix">$</i>
+		          	<input name="min-price" id="min-price" type="number" maxlength="4">
+		          	<label for="min-price">цена от</label>
+					
+				</div>
+				<div class="input-field col s12 m4 l2">
+					<i class="material-icons prefix">$</i>
+		          	<input name="max-price" id="max-price" type="number"  maxlength="4">
+		          	<label for="max-price">цена до</label>
+					
+				</div>
+
+	      		<button class="btn-flat filterit" type="submit" name="filter">
+	      		Показать<i class="material-icons right">search</i>
+	      		</button>
+			</div>
+		</form>
+	</div>
+
+<script>
+	$(document).ready(function() {
+		var pat = window.location.pathname;
+		var catNumb = pat.split('/')[2]
+		$(".nav-wrapper a").parent().removeClass('active');
+		$(".nav-wrapper a[href*='"+catNumb+"']").parent().addClass('active');
+
+
+		var minprice = "{{minprice_selected}}";
+		var maxprice = "{{maxprice_selected}}";
+		$("input[name='min-price']").val(minprice);
+		$("input[name='max-price']").val(maxprice);
+
+		var uri = window.location.href;
+		var q = location.search.substring(1);
+		var vars = q.split('&');
+		vars.pop();
+		var ons = [];
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split('=');
+			if (pair[1] == 'on'){
+				ons.push(pair[0]);
+				}
+		}
+
+		$(".filter input:checkbox").attr('checked', false);
+		for (var i = 0; i < ons.length; i++) {
+			$("input[name='"+ons[i]+"']").attr('checked', true);
+		}
+
+		if (q == ''){
+			$("#cond_new").attr('checked', true);
+			$("input[name='min-price']").val("");
+			$("input[name='max-price']").val("");
+		}
+});
+</script>
+
+<div class="row categories">
+{% for img in imgs %}
+	<div class="col s12 m6 l3">
+		<div class="card large">
+		    <div class="card-image">
+		      	<a href="/product/{{img.2}}"><img class="responsive-img" src="{{img.0}}"></a>
+		    </div>
+			<div class="card-content">
+			    <p><strong>{{img.4}}</strong> {{img.1}}</p>
+			   	<b><p>${{img.3}}</p></b>
+			</div>
+			<div class="card-action">
+			    <a href="/product/{{img.2}}">Подробнее</a>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+</div> 
+
+<ul class="pagination"></ul>
+
+<!-- PAGINATOR -->
+<script>
+	$(document).ready(function(){
+	var totalItems = "{{total_entries}}";
+	Materialize.toast("Найдено "+totalItems+" товаров", 4000)
+	var pages;
+	var total = "{{total_pages}}";
+	var category = "{{category}}";
+	var maxPages = parseInt(total,10);
+	if (maxPages < 100) {
+		pages = maxPages;
+	}
+	else {
+		pages = 100;
+	}
+
+	var query = location.search
+
+	var html = "<li class='disabled'><a id='arrowFirst' href='/category/"+category+"/1"+query+"'><i class='material-icons'>chevron_left</i></a></li><li class='active'><a href='/category/"+category+"/1'>1</a></li>";
+	for (var i=2; i < pages+1; i++) {
+			html += "<li class='waves-effect'><a href='/category/"+category+"/"+i+query+"'>"+i+"</a></li>";
+		}
+		html+="<li class='waves-effect'><a id='arrowLast' href='/"+pages+query+"'><i class='material-icons'>chevron_right</i></a></li>"
+	$('.pagination').append(html);
+
+	var url = window.location.href;
+	var result = '/' + url.split('/')[5];
+	$(".pagination li").removeClass("active");
+	$(".pagination li a[href='/category/" + category + result + query+"']").parent().addClass("active");
+	$(".pagination li #arrowFirst, .pagination li #arrowLast").parent().removeClass("active");
+
+	if (result == '/1' || result == '/') {
+		$(".pagination li #arrowFirst").parent().addClass("disabled");
+		$(".pagination li a:eq(1)").parent().addClass("active");
+	}
+	else{
+		$(".pagination li #arrowFirst").parent().removeClass("disabled");
+	}
+
+	var last = result.split('/')[1];
+	if (parseInt(last) == pages) {
+		$(".pagination li #arrowLast").parent().addClass("disabled");
+	}
+	else{
+		$(".pagination li #arrowLast").parent().removeClass("disabled");
+	}
+});
+
+</script>
+{% endblock %}  
