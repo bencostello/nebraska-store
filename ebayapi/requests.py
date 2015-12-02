@@ -126,9 +126,9 @@ def query_category(request, page, category_id):
     # 	sizes = ['7']
 
     #connect to ebay api and search items
-    api = Connection(appid='Nebraska-447a-46d1-bcf9-f7212fe94acc')
+    api = Connection(appid='*****')
     response = api.execute('findItemsIneBayStores', {
-    'storeName': 'apparelsave', 
+    'storeName': '*****', 
     'categoryId': category_id,
 
     'itemFilter': [
@@ -184,7 +184,7 @@ def query_category(request, page, category_id):
 
 
 def query_product(request, itemID):
-    api = Shopping(appid='Nebraska-447a-46d1-bcf9-f7212fe94acc')
+    api = Shopping(appid='*****')
     response = api.execute('GetSingleItem', {'ItemID': itemID, 'IncludeSelector':'ShippingCosts, ItemSpecifics, Variations'})
     item = response.dict()
     
