@@ -7,6 +7,9 @@ http://nebraska-store.com/
 Tools I used:
 
 Python/Django
+
 ebaysdk-python
+
 Materialize Frontend Framework
+
 JavaScript/jQuery
